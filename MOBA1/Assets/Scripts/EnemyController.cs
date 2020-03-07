@@ -60,6 +60,7 @@ public class EnemyController : MonoBehaviour
                 UpdateAttackTarget();
                 break;
             case State.Dying:
+                Debug.Log("Die");
                 UpdateDying();
                 break;
         }
@@ -109,13 +110,13 @@ public class EnemyController : MonoBehaviour
 
     void UpdateDying()
     {
-        Vector3 position = transform.position;
-        position.y = Mathf.Lerp(position.y, position.y - 5.0f, Time.deltaTime);
-        transform.position = position;
-        if (position.y <= 0.0f)
-        {
-            Destroy(gameObject);
-        }
+        //Vector3 position = transform.position;
+        //position.y = Mathf.Lerp(position.y, position.y - 5.0f, Time.deltaTime);
+        //transform.position = position;
+        //if (position.y <= 0.0f)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
     bool CheckDying()

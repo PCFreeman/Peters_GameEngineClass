@@ -19,7 +19,8 @@ public class PlayerClient : NetworkBehaviour
     [Command]
     void Cmd_SpawnHero()
     {
-        hero = Instantiate(heroPrefab);
+        var spawnPoint = GameObject.Find("Sunny1");
+        hero = Instantiate(heroPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
         NetworkServer.SpawnWithClientAuthority(hero, connectionToClient);
     }
 }
