@@ -4,6 +4,7 @@ using UnityEngine.Networking;
 
 public class HeroController : NetworkBehaviour
 {
+    public LayerMask CommandLayMask;
     public float attackRange;
     public float attackRate;
 
@@ -90,12 +91,12 @@ public class HeroController : NetworkBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 1000.0f))
+            if (Physics.Raycast(ray, out hit, 1000.0f, ~CommandLayMask))
             {
-                var hitTeam = hit.collider.GetComponent<Team>();
+                var hitTeam = hit.collider.GetComponentInParent<Team>();
                 if (hitTeam && hitTeam.faction != team.faction)
                 {
-                    attackCommand.targetHealth = hit.collider.GetComponent<Health>();
+                    attackCommand.targetHealth = hit.collider.GetComponentInParent<Health>();
                     return Command.Attack;
                 }
                 else
